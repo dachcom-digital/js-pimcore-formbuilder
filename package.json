@@ -1,0 +1,19 @@
+{
+    "name": "js-pimcore-formbuilder",
+    "version": "1.0.0",
+    "description": "Dependency free js plugins for Pimcore Formbuilder",
+    "author": "DACHCOM.DIGITAL",
+    "license": "GPL-3.0-or-later",
+    "main": "src/js/formbuilder.js",
+    "peerDependencies": {
+        "dropzone": "^5.9.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dachcom-digital/js-pimcore-formbuilder"
+    },
+    "bugs": {
+        "url": "https://github.com/dachcom-digital/js-pimcore-formbuilder/issues"
+    },
+    "homepage": "https://github.com/dachcom-digital/js-pimcore-formbuilder"
+}
