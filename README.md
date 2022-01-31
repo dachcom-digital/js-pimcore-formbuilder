@@ -20,4 +20,4 @@ npm i js-pimcore-formbuilder
 ## Upgrade Notes
 
 ### 1.0.0
-- New Theme Transformers available: Tailwind Simple, Tailwind Floating Labels, Bootstrap 5
+- New Theme Transformer available: Tailwind 2
