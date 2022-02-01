@@ -1,18 +1,17 @@
 export const tailwind2Validation = {
     addValidationMessage: (form, field, messages) => {
-        field.closest('.formbuilder-row').classList.add('.form-invalid');
+        field.closest('.formbuilder-row').classList.add('form-invalid');
         messages.forEach((message) => {
-            let spanEl = document.createElement('div');
-            spanEl.className = 'form-invalid-message';
-            spanEl.innerText = message;
-            if (field.querySelectorAll('.custom-control').length) {
-                field.lastElementChild.lastElementChild.after(spanEl);
+            let el = document.createElement('div');
+            el.className = 'form-invalid-message';
+            el.innerText = message;
+            if (field.matches('[type="radio"],[type="checkbox"]')) {
+                field.parentElement.after(el);
             } else {
-                field.after(spanEl);
+                field.after(el);
             }
         });
     },
-
 
     removeFormValidations: (form) => {
         form.querySelectorAll('.form-invalid').forEach((el) => el.classList.remove('form-invalid'));
