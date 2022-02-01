@@ -116,7 +116,7 @@ if (formBuilderForms.length) {
     new Endpoints().getEndpoints(formBuilderForms[0].dataset.ajaxStructureUrl)
         .then((endpoints) => {
             formBuilderForms.forEach((formBuilderForm) => {
-                new FetchManager(form, {}, endpoints);
+                new FetchManager(formBuilderForm, {}, endpoints);
             });
         }).catch((error) => {
         console.error('formbuilder error: fetching file structure', error);
