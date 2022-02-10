@@ -196,14 +196,12 @@ export default class ConditionalLogic {
         let toggleElement = new ActionApplier({
             enable: (action, ev, els) => {
                 els.forEach((el) => {
-                    const action = action.state === 'show' ? 'show' : 'hide';
-                    this.elementTransformer.transform(action, el, this.options.hideElementClass);
+                    this.elementTransformer.transform(action.state === 'show' ? 'show' : 'hide', el, this.options.hideElementClass);
                 });
             },
             disable: (action, ev, els) => {
                 els.forEach((el) => {
-                    const action = action.state === 'show' ? 'hide' : 'show';
-                    this.elementTransformer.transform(action, el, this.options.hideElementClass);
+                    this.elementTransformer.transform(action.state === 'show' ? 'hide' : 'show', el, this.options.hideElementClass);
                 });
             },
         }, this.options.actions.toggleElement);
@@ -285,9 +283,7 @@ export default class ConditionalLogic {
             },
             disable: (action, ev, els) => {
                 els.forEach((el) => {
-                    const hic = el.dataset.fbClHasInitialRequiredConstraint;
-
-                    if (hic === '1') {
+                    if (el.dataset.fbClHasInitialRequiredConstraint === '1') {
                         this.elementTransformer.transform('addRequiredState', el);
                     } else if (isArray(action.validation) && action.validation.includes('not_blank')) {
                         this.elementTransformer.transform('removeRequiredState', el);
@@ -308,8 +304,7 @@ export default class ConditionalLogic {
             },
             disable: (action, ev, els) => {
                 els.forEach((el) => {
-                    const hic = el.dataset.fbClHasInitialRequiredConstraint;
-                    if (hic === '1') {
+                    if (el.dataset.fbClHasInitialRequiredConstraint === '1') {
                         this.elementTransformer.transform('addRequiredState', el);
                     }
                 });
