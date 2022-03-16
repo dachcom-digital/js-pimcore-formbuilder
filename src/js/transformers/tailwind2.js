@@ -52,7 +52,7 @@ export const tailwind2ConditionalLogic = {
         }
     },
     removeRequiredState: (el) => {
-        el.removeAttr('required');
+        el.removeAttribute('required');
         el.closest('.formbuilder-row').classList.remove('form-invalid');
         // default
         if (el.previousElementSibling.matches('label')) {

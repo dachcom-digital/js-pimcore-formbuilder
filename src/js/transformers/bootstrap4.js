@@ -55,7 +55,7 @@ export const bootstrap4ConditionalLogic = {
         }
     },
     removeRequiredState: (el) => {
-        el.removeAttr('required');
+        el.removeAttribute('required');
         el.classList.remove('is-invalid');
         // default
         if (el.previousElementSibling.matches('label')) {
