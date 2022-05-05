@@ -8,7 +8,7 @@ export default class FetchManager {
 
     constructor(form, options = {}, endpoints = null) {
         this.form = form;
-        this.options = Object.assign(FETCH_MANAGER_DEFAULTS, options);
+        this.options = Object.assign({}, FETCH_MANAGER_DEFAULTS, options);
         this.elementTransformer = new ElementTransformer(this.form, TYPE_VALIDATION, this.options.elementTransformer);
 
         this.endpoints = endpoints;
