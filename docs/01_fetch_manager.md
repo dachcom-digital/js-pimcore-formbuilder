@@ -33,7 +33,7 @@ Depending on the form template, predefined Element Transformers are used automat
 
 ### Custom Element Transformers
 
-Use the elementTransformer option to customize the validations. Use this option when a custom form template is set.
+Use the sformer option to customize the validations. Use this option when a custom form template is set.
 
 ```js
 new FetchManager(form, {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             onSuccess: (messages, redirect) => {
                 console.log(messages, redirect);
             },
-            validationTransformer: {
+            elementTransformer: {
                 addValidationMessage: (field, messages) => {
                     console.log(field, messages);
                 },
