@@ -1,4 +1,4 @@
-import {FETCH_MANAGER_DEFAULTS} from '../constants/defaults';
+import {EVENTS, FETCH_MANAGER_DEFAULTS} from '../constants/defaults';
 import Endpoints from './endpoints';
 import ElementTransformer from './elementTransformer';
 import {TYPE_VALIDATION} from '../constants/elementTransformer';
@@ -127,22 +127,22 @@ export default class FetchManager {
     onRequestDone(form, data) {
         this.options.onRequestDone(data);
         this.elementTransformer.transform('removeFormValidations', form);
-        form.dispatchEvent(new CustomEvent('formbuilder.done'));
+        form.dispatchEvent(new CustomEvent(EVENTS.done));
     }
 
     onFail(form, data) {
         this.options.onFail(data);
-        form.dispatchEvent(new CustomEvent('formbuilder.error'));
+        form.dispatchEvent(new CustomEvent(EVENTS.error));
     }
 
     onFatalError(form, data) {
         this.options.onFatalError(data);
-        form.dispatchEvent(new CustomEvent('formbuilder.fatal'));
+        form.dispatchEvent(new CustomEvent(EVENTS.fatal));
     }
 
     onGeneralError(form, generalErrorMessages) {
         this.options.onGeneralError(generalErrorMessages);
-        form.dispatchEvent(new CustomEvent('formbuilder.error-form'));
+        form.dispatchEvent(new CustomEvent(EVENTS.errorForm));
     }
 
     onErrorField(form, field, messages) {
@@ -151,12 +151,12 @@ export default class FetchManager {
             messages: messages,
         });
         this.elementTransformer.transform('addValidationMessage', form, field, messages);
-        form.dispatchEvent(new CustomEvent('formbuilder.error-field'));
+        form.dispatchEvent(new CustomEvent(EVENTS.errorField));
     }
 
     onSuccess(form, data) {
         this.options.onSuccess(data.messages, data.redirect);
-        form.dispatchEvent(new CustomEvent('formbuilder.success'));
+        form.dispatchEvent(new CustomEvent(EVENTS.success));
     }
 
 }

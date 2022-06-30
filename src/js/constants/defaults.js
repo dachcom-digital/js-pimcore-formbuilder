@@ -56,3 +56,21 @@ export const CONDITIONAL_LOGIC_DEFAULTS = {
     elementTransformer: null,
     hideElementClass: 'fb-cl-hide-element',
 };
+
+export const EVENTS = {
+    success: 'formbuilder.success',
+    error: 'formbuilder.error',
+    errorForm: 'formbuilder.error-form',
+    errorField: 'formbuilder.error-field',
+    done: 'formbuilder.done',
+    fatal: 'formbuilder.fatal',
+    fatalCaptcha: 'formbuilder.fatal-captcha',
+    requestDone: 'formbuilder.request-done',
+    repeaterContainerUpdate: 'formbuilder.repeater.container.update',
+    layoutPostAdd: 'formbuilder.layout.post.add',
+    layoutPreAdd: 'formbuilder.layout.pre.add',
+    layoutPostRemove: 'formbuilder.layout.post.remove',
+    layoutPreRemove: 'formbuilder.layout.pre.remove',
+    dynamicMultiFileInit: 'formbuilder.dynamic_multi_file.init',
+    dynamicMultiFileDropzoneInit: 'formbuilder.dynamic_multi_file.dropzone.init'
+};

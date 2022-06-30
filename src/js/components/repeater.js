@@ -1,4 +1,4 @@
-import {REPEATER_DEFAULTS} from '../constants/defaults';
+import { EVENTS, REPEATER_DEFAULTS } from '../constants/defaults';
 import {isFunction, isNode} from '../utils/helpers';
 
 export default class Repeater {
@@ -22,7 +22,7 @@ export default class Repeater {
 
         blocks.forEach((block) => this.addRemoveBlockButton(block, container));
 
-        container.addEventListener('formbuilder.repeater.container.update', (ev) => {
+        container.addEventListener(EVENTS.repeaterContainerUpdate, (ev) => {
             this.reRenderBlockLabels(ev.target);
         });
     }
@@ -112,10 +112,10 @@ export default class Repeater {
             this.reRenderBlockLabels(container);
             this.addRemoveBlockButton(newBlock, container);
             this.verifyButtonStates(container);
-            this.form.dispatchEvent(new CustomEvent('formbuilder.layout.post.add', {detail: {layout: newBlock}}));
+            this.form.dispatchEvent(new CustomEvent(EVENTS.layoutPostAdd, {detail: {layout: newBlock}}));
         };
 
-        this.form.dispatchEvent(new CustomEvent('formbuilder.layout.pre.add', {detail: {layout: newBlock}}));
+        this.form.dispatchEvent(new CustomEvent(EVENTS.layoutPreAdd, {detail: {layout: newBlock}}));
 
         if (isFunction(this.options.onAdd)) {
             this.options.onAdd(container, newForm, cb);
@@ -134,10 +134,10 @@ export default class Repeater {
         cb = () => {
             this.reRenderBlockLabels(container);
             this.verifyButtonStates(container);
-            this.form.dispatchEvent(new CustomEvent('formbuilder.layout.post.remove', {detail: {layout: containerBlock}}));
+            this.form.dispatchEvent(new CustomEvent(EVENTS.layoutPostRemove, {detail: {layout: containerBlock}}));
         };
 
-        this.form.dispatchEvent(new CustomEvent('formbuilder.layout.pre.remove', {detail: {layout: containerBlock}}));
+        this.form.dispatchEvent(new CustomEvent(EVENTS.layoutPreRemove, {detail: {layout: containerBlock}}));
 
         if (isFunction(this.options.onRemove)) {
             this.options.onRemove(container, cb);
