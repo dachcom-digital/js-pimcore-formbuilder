@@ -1,4 +1,4 @@
-import {DYNAMIC_MULTI_FILE_DROPZONE_DEFAULTS} from '../constants/defaults';
+import {DYNAMIC_MULTI_FILE_DROPZONE_DEFAULTS, EVENTS} from '../constants/defaults';
 import Endpoints from '../core/endpoints';
 import Dropzone from 'dropzone';
 
@@ -44,7 +44,7 @@ export default class DropzoneHandler {
                 uploadMultiple: config.multiple,
                 init: () => {
                     template.remove();
-                    this.form.dispatchEvent(new CustomEvent('formbuilder.dynamic_multi_file.dropzone.init'));
+                    this.form.dispatchEvent(new CustomEvent(EVENTS.dynamicMultiFileDropzoneInit));
                 },
             };
 
@@ -58,7 +58,7 @@ export default class DropzoneHandler {
 
         dropzoneConfiguration = Object.assign(dropzoneConfiguration, this.options.dropzoneOptions);
 
-        this.form.dispatchEvent(new CustomEvent('formbuilder.dynamic_multi_file.init', {detail: [el, this.options, dropzoneConfiguration]}));
+        this.form.dispatchEvent(new CustomEvent(EVENTS.dynamicMultiFileInit, {detail: [el, this.options, dropzoneConfiguration]}));
         element.classList.add('dropzone');
 
         new Dropzone(element, dropzoneConfiguration)
@@ -119,14 +119,14 @@ export default class DropzoneHandler {
 
         });
 
-        this.form.addEventListener('formbuilder.request-done', (ev) => {
+        this.form.addEventListener(EVENTS.requestDone, (ev) => {
 
             let elements = ev.target.querySelectorAll('.dz-remove');
             elements.forEach((el) => el.style.display = 'block');
 
         });
 
-        this.form.addEventListener('formbuilder.success', (ev) => {
+        this.form.addEventListener(EVENTS.success, (ev) => {
 
             let elements = ev.target.querySelectorAll('[data-dynamic-multi-file-instance]');
             elements.forEach((el) => {
@@ -150,14 +150,14 @@ export default class DropzoneHandler {
 
         });
 
-        this.form.addEventListener('formbuilder.layout.post.add', (ev) => {
+        this.form.addEventListener(EVENTS.layoutPostAdd, (ev) => {
 
             let elements = ev.detail.layout.querySelectorAll('[data-dynamic-multi-file-instance]');
             elements.forEach((el) => this.setupDropZoneElement(el));
 
         });
 
-        this.form.addEventListener('formbuilder.layout.pre.remove', (ev) => {
+        this.form.addEventListener(EVENTS.layoutPreRemove, (ev) => {
 
             let elements = ev.detail.layout.querySelectorAll('[data-dynamic-multi-file-instance]');
             elements.forEach((el) => {

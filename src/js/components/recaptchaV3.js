@@ -1,4 +1,4 @@
-import {RECAPTCHA_V3_DEFAULTS} from '../constants/defaults';
+import {EVENTS, RECAPTCHA_V3_DEFAULTS} from '../constants/defaults';
 import {getScript, isNode} from '../utils/helpers';
 
 export default class RecaptchaV3 {
@@ -27,8 +27,8 @@ export default class RecaptchaV3 {
         this.siteKey = this.reCaptchaField.dataset.siteKey;
         this.action = this.reCaptchaField.dataset.actionName;
 
-        this.form.addEventListener('formbuilder.success', () => this.onReset());
-        this.form.addEventListener('formbuilder.fail', () => this.onReset());
+        this.form.addEventListener(EVENTS.success, () => this.onReset());
+        this.form.addEventListener(EVENTS.error, () => this.onReset());
 
         this.bindDependency();
     }
@@ -53,11 +53,11 @@ export default class RecaptchaV3 {
             return;
         }
 
-        if (typeof window.grecaptcha === 'undefined') {
+        if (!window.grecaptcha) {
             return;
         }
 
-        if (!this.reCaptchaField.length) {
+        if (!this.reCaptchaField) {
             return;
         }
 
@@ -70,7 +70,7 @@ export default class RecaptchaV3 {
             grecaptcha.execute(this.siteKey, {action: this.action})
                 .then((token) => this.onTokenGenerated(token));
         } catch (error) {
-            this.form.dispatchEvent(new CustomEvent('formbuilder.fatal-captcha'));
+            this.form.dispatchEvent(new CustomEvent(EVENTS.fatalCaptcha));
         }
     }
 

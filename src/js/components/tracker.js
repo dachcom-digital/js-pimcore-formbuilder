@@ -1,4 +1,4 @@
-import {TRACKER_DEFAULTS} from '../constants/defaults';
+import { EVENTS, TRACKER_DEFAULTS } from '../constants/defaults';
 import {isObject, isString, isFunction} from '../utils/helpers';
 
 export default class Tracker {
@@ -8,7 +8,7 @@ export default class Tracker {
         this.options = Object.assign(TRACKER_DEFAULTS, options);
         this.form = form;
 
-        this.form.addEventListener('formbuilder.success', (ev) => this.onSubmission(ev));
+        this.form.addEventListener(EVENTS.success, (ev) => this.onSubmission(ev));
     }
 
     onSubmission(ev) {
