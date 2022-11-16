@@ -68,7 +68,7 @@ export default class RecaptchaV3 {
     injectTokenToForm() {
         try {
             grecaptcha.execute(this.siteKey, {action: this.action})
-                .then(() => this.onTokenGenerated());
+                .then((token) => this.onTokenGenerated(token));
         } catch (error) {
             this.form.dispatchEvent(new CustomEvent('formbuilder.fatal-captcha'));
         }
