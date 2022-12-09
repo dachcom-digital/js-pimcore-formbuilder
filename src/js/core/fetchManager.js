@@ -104,11 +104,10 @@ export default class FetchManager {
                     this.onErrorField(form, field, messages);
                 }
             }
+        }
 
-            if (generalErrorMessages.length > 0) {
-                this.onGeneralError(form, generalErrorMessages);
-            }
-
+        if (generalErrorMessages.length > 0) {
+            this.onGeneralError(form, generalErrorMessages);
         }
     }
 
