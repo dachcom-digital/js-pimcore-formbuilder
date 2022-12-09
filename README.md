@@ -19,6 +19,10 @@ npm i js-pimcore-formbuilder
 
 ## Upgrade Notes
 
+### 1.0.6
+- **[BUGFIX]**: Do not submit general error event multiple times
+- **[BUGFIX]**: Do not dispatch delete file event, after form gets cleared out
+
 ### 1.0.5
 - **[BUGFIX]**: ReCaptcha token assignment not working [@patric-eberle](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/5)
 - **[BUGFIX]**: ReCaptcha Hash never updated  [@patric-eberle](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/9)
