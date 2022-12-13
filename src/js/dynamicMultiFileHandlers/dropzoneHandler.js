@@ -9,7 +9,7 @@ export default class DropzoneHandler {
         this.options = Object.assign(DYNAMIC_MULTI_FILE_DROPZONE_DEFAULTS, options);
         this.endpoints = endpoints;
         this.dmfFields = form.querySelectorAll('[data-dynamic-multi-file-instance]');
-
+        this.suspendFileRemoval = false;
 
         if (!this.endpoints || !['file_add', 'file_chunk_done', 'file_delete']
             .every((key) => Object.keys(this.endpoints).includes(key))) {
@@ -63,7 +63,13 @@ export default class DropzoneHandler {
 
         new Dropzone(element, dropzoneConfiguration)
             .on('removedfile', (file) => {
+
+                if (this.suspendFileRemoval) {
+                    return;
+                }
+
                 let url = `${this.getEndpoint('file_delete')}/${file.upload.uuid}`;
+
                 fetch(url, {method: 'DELETE'})
                     .then(response => response.json())
                     .then((data) => {
@@ -87,6 +93,8 @@ export default class DropzoneHandler {
             });
         }).on('cancel', () => {
             submitButton.removeAttribute('disabled');
+        }).on('reset', () => {
+            this.suspendFileRemoval = false;
         });
 
     }
@@ -129,6 +137,9 @@ export default class DropzoneHandler {
         this.form.addEventListener(EVENTS.success, (ev) => {
 
             let elements = ev.target.querySelectorAll('[data-dynamic-multi-file-instance]');
+
+            this.suspendFileRemoval = true;
+
             elements.forEach((el) => {
                 let dzInstance = null,
                     fieldId = el.dataset.fieldId,
