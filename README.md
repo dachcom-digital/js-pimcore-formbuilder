@@ -19,6 +19,9 @@ npm i js-pimcore-formbuilder
 
 ## Upgrade Notes
 
+### 1.0.7
+- **[BUGFIX]**: Respect `data-field-name` attribute in Conditional Logic
+
 ### 1.0.6
 - **[BUGFIX]**: Do not submit general error event multiple times
 - **[BUGFIX]**: Do not dispatch delete file event, after form gets cleared out
