@@ -130,7 +130,7 @@ export default class ConditionalLogic {
 
                         if (action.fields) {
                             action.fields.forEach((fieldName) => {
-                                let field = this.form.querySelectorAll('[name*="' + fieldName + '"]');
+                                let field = this.form.querySelectorAll('[name*="' + fieldName + '"],[data-field-name*="' + fieldName + '"]');
                                 if (doAction) {
                                     this.actions[action.type].onEnable(action, ev, field);
                                 } else {
