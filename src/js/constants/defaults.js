@@ -1,19 +1,17 @@
 export const FETCH_MANAGER_DEFAULTS = {
     submitBtnSelector: 'button[type="submit"]',
     resetFormMethod: null, // form
-    onRequestDone: (responseData) => {
+    onRequestDone: (response, form) => {
     },
-    onFail: (responseData) => {
+    onFail: (response, form) => {
     },
-    onError: (responseData) => {
+    onFatalError: (response, form) => {
     },
-    onFatalError: (responseData) => {
+    onErrorField: (fieldError, form) => {
     },
-    onErrorField: (field, messages) => {
+    onGeneralError: (generalErrorMessages, form) => {
     },
-    onGeneralError: (generalErrorMessages) => {
-    },
-    onSuccess: (messages, redirect) => {
+    onSuccess: (messages, redirect, form) => {
     },
     elementTransformer: null,
 };
