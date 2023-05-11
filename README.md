@@ -19,6 +19,9 @@ npm i js-pimcore-formbuilder
 
 ## Upgrade Notes
 
+### 1.0.8
+- **[BUGFIX]**: Passing form and options in events [#2](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/2)
+
 ### 1.0.7
 - **[BUGFIX]**: Respect `data-field-name` attribute in Conditional Logic
 

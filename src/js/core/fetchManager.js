@@ -18,13 +18,12 @@ export default class FetchManager {
         } else {
             this.loadForm(form);
         }
-
     }
 
     loadForm(form) {
 
         if (!this.endpoints['form_parser']) {
-            console.error('formbuilder error: no form parse url', error);
+            console.error('formbuilder error: no form parse url defined');
             return;
         }
 
@@ -113,7 +112,6 @@ export default class FetchManager {
 
     setEndpoints(form) {
         let url = form.dataset.ajaxStructureUrl;
-
         new Endpoints().getEndpoints(url)
             .then((endpoints) => {
                 this.endpoints = endpoints;
@@ -124,38 +122,78 @@ export default class FetchManager {
     }
 
     onRequestDone(form, data) {
-        this.options.onRequestDone(data);
+        this.options.onRequestDone(data, form);
         this.elementTransformer.transform('removeFormValidations', form);
-        form.dispatchEvent(new CustomEvent(EVENTS.done));
+        form.dispatchEvent(
+            new CustomEvent(EVENTS.done, {
+                    detail: {
+                        response: data
+                    }
+                }
+            )
+        );
     }
 
     onFail(form, data) {
-        this.options.onFail(data);
-        form.dispatchEvent(new CustomEvent(EVENTS.error));
+        this.options.onFail(data, form);
+        form.dispatchEvent(
+            new CustomEvent(EVENTS.error, {
+                    detail: {
+                        response: data
+                    }
+                }
+            )
+        );
     }
 
     onFatalError(form, data) {
-        this.options.onFatalError(data);
-        form.dispatchEvent(new CustomEvent(EVENTS.fatal));
+        this.options.onFatalError(data, form);
+        form.dispatchEvent(
+            new CustomEvent(EVENTS.fatal, {
+                    detail: {
+                        response: data
+                    }
+                }
+            )
+        );
     }
 
     onGeneralError(form, generalErrorMessages) {
-        this.options.onGeneralError(generalErrorMessages);
-        form.dispatchEvent(new CustomEvent(EVENTS.errorForm));
+        this.options.onGeneralError(generalErrorMessages, form);
+        form.dispatchEvent(
+            new CustomEvent(EVENTS.errorForm, {
+                    detail: {
+                        generalErrorMessages: generalErrorMessages
+                    }
+                }
+            )
+        );
     }
 
     onErrorField(form, field, messages) {
-        this.options.onErrorField({
-            field: field,
-            messages: messages,
-        });
         this.elementTransformer.transform('addValidationMessage', form, field, messages);
-        form.dispatchEvent(new CustomEvent(EVENTS.errorField));
+        this.options.onErrorField({field: field, messages: messages}, form);
+        form.dispatchEvent(
+            new CustomEvent(EVENTS.errorField, {
+                    detail: {
+                        field: field,
+                        messages: messages
+                    }
+                }
+            )
+        );
     }
 
     onSuccess(form, data) {
-        this.options.onSuccess(data.messages, data.redirect);
-        form.dispatchEvent(new CustomEvent(EVENTS.success));
+        this.options.onSuccess(data.messages, data.redirect, form);
+        form.dispatchEvent(
+            new CustomEvent(EVENTS.success, {
+                    detail: {
+                        messages: data.messages,
+                        redirect: data.redirect
+                    }
+                }
+            )
+        );
     }
-
 }
