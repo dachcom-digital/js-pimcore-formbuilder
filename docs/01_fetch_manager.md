@@ -66,29 +66,26 @@ document.addEventListener('DOMContentLoaded', () => {
             // avaiable options
             submitBtnSelector: 'button[type="submit"]',
             resetFormMethod: (form) => {
-                // set a custom reset form method. Default: null
+                // set a custom reset function if form has been submitted. Default: null
                 console.log(form);
             },
-            onRequestDone: (responseData) => {
-                console.log(responseData);
+            onRequestDone: (response, form) => {
+                console.log(response, form);
             },
-            onFail: (responseData) => {
-                console.log(responseData);
+            onFail: (response, form) => {
+                console.log(response, form);
             },
-            onError: (responseData) => {
-                console.log(responseData);
+            onFatalError: (response, form) => {
+                console.log(response, form);
             },
-            onFatalError: (responseData) => {
-                console.log(responseData);
+            onErrorField: (fieldError, form) => {
+                console.log(fieldError.field, fieldError.messages, form);
             },
-            onErrorField: (field, messages) => {
-                console.log(field, messages);
+            onGeneralError: (generalErrorMessages, form) => {
+                console.log(generalErrorMessages, form);
             },
-            onGeneralError: (generalErrorMessages) => {
-                console.log(generalErrorMessages);
-            },
-            onSuccess: (messages, redirect) => {
-                console.log(messages, redirect);
+            onSuccess: (messages, redirect, form) => {
+                console.log(messages, redirect, form);
             },
             elementTransformer: {
                 addValidationMessage: (form, field, messages) => {
