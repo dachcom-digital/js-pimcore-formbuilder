@@ -19,6 +19,10 @@ npm i js-pimcore-formbuilder
 
 ## Upgrade Notes
 
+### 1.0.9
+- **[BUGFIX]**: Fix removing help blocks in transformers
+- **[BUGFIX]**: Fix includes check in conditionalLogic.js
+
 ### 1.0.8
 - **[BUGFIX]**: Passing form and options in events [#2](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/2)
 

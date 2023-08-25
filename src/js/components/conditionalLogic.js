@@ -297,7 +297,7 @@ export default class ConditionalLogic {
                 els.forEach((el) => {
                     if (action.removeAllValidations) {
                         this.elementTransformer.transform('removeRequiredState', el);
-                    } else if (isArray(action.validation) && action.validation.contains('not_blank')) {
+                    } else if (isArray(action.validation) && action.validation.includes('not_blank')) {
                         this.elementTransformer.transform('removeRequiredState', el);
                     }
                 });

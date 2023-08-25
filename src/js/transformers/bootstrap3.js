@@ -52,7 +52,10 @@ export const bootstrap3ConditionalLogic = {
         if (el.parentNode.matches('label')) {
             el.parentNode.closest('.form-group').parentNode.querySelector('.control-label').classList.remove('required');
         } else {
-            el.parentNode.querySelector('.help-block').remove();
+            let helpBlock = el.parentNode.querySelector('.help-block');
+            if(helpBlock) {
+                helpBlock.remove();
+            }
             el.previousElementSibling.classList.remove('required');
             el.parentNode.classList.remove('has-error');
         }
