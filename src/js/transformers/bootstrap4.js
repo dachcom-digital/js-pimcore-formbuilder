@@ -59,7 +59,10 @@ export const bootstrap4ConditionalLogic = {
         el.classList.remove('is-invalid');
         // default
         if (el.previousElementSibling.matches('label')) {
-            el.parentNode.querySelector('.invalid-feedback').remove();
+            let invalidFeedback = el.parentNode.querySelector('.invalid-feedback');
+            if(invalidFeedback) {
+                invalidFeedback.remove();
+            }
             el.previousElementSibling.classList.remove('required');
             // custom control type
         } else if (el.nextElementSibling.matches('label')) {

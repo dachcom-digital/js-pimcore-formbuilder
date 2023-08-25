@@ -56,7 +56,10 @@ export const tailwind2ConditionalLogic = {
         el.closest('.formbuilder-row').classList.remove('form-invalid');
         // default
         if (el.previousElementSibling.matches('label')) {
-            el.parentNode.querySelector('.invalid-feedback').remove();
+            let invalidFeedback = el.parentNode.querySelector('.invalid-feedback');
+            if(invalidFeedback) {
+                invalidFeedback.remove();
+            }
             el.previousElementSibling.classList.remove('required');
             // custom control type
         } else if (el.nextElementSibling.matches('label')) {
