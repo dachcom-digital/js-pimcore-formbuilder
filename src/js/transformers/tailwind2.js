@@ -44,7 +44,7 @@ export const tailwind2ConditionalLogic = {
     },
     addRequiredState: (el) => {
         el.setAttribute('required', 'required');
-        if(el.closest('.ajax-form') && el.closest('.ajax-form').classList.contains('ajax-form-submitted')) {
+        if (el.closest('.ajax-form') && el.closest('.ajax-form').classList.contains('ajax-form-submitted')) {
             el.closest('.formbuilder-row').classList.add('form-invalid');
         }
         if (el.closest('.form-group') && el.closest('.form-group').querySelector('.col-form-legend')) {
@@ -58,21 +58,21 @@ export const tailwind2ConditionalLogic = {
     removeRequiredState: (el) => {
         el.removeAttribute('required');
         el.closest('.formbuilder-row').classList.remove('form-invalid');
-        if(el.closest('.form-group')) {
+        if (el.closest('.form-group')) {
             // form-group field
             let legendField = el.closest('.form-group').querySelector('.col-form-legend');
-            if(legendField) {
+            if (legendField) {
                 legendField.classList.add('required');
             }
             let invalidFeedback = el.closest('.form-group').parentNode.querySelector('.form-invalid-message');
-            if(invalidFeedback) {
+            if (invalidFeedback) {
                 invalidFeedback.remove();
             }
         } else if (el.labels.length) {
             // default
             el.labels[0].classList.remove('required');
             let invalidFeedback = el.closest('.form-row').querySelector('.form-invalid-message');
-            if(invalidFeedback) {
+            if (invalidFeedback) {
                 invalidFeedback.remove();
             }
         }
