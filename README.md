@@ -18,6 +18,9 @@ npm i js-pimcore-formbuilder
     - [Drop Zone](./10_dmf_drop_zone.md)
 
 ## Upgrade Notes
+### 1.1.0
+- **[FEATURE]**: Add invalid classes in conditional logic only, when form has already been submitted [#20](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/20)
+- **[BUGFIX]**: Fix required state in conditional logic [#19](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/19)
 
 ### 1.0.9
 - **[BUGFIX]**: Fix removing help blocks in transformers
