@@ -47,27 +47,34 @@ export const bootstrap4ConditionalLogic = {
     addRequiredState: (el) => {
         el.setAttribute('required', 'required');
         el.classList.add('is-invalid');
-        //its a form-group field
-        if (el.previousElementSibling.matches('label')) {
-            el.previousElementSibling.classList.add('required');
-        } else if (el.nextElementSibling.matches('label')) {
+        if (el.closest('.form-group') && el.closest('.form-group').querySelector('.col-form-legend')) {
+            // form-group field
             el.closest('.form-group').querySelector('.col-form-legend').classList.add('required');
+        } else if (el.labels.length) {
+            // default
+            el.labels[0].classList.add('required');
         }
     },
     removeRequiredState: (el) => {
         el.removeAttribute('required');
         el.classList.remove('is-invalid');
-        // default
-        if (el.previousElementSibling.matches('label')) {
+        if(el.closest('.form-group')) {
+            // form-group field
+            let legendField = el.closest('.form-group').querySelector('.col-form-legend');
+            if(legendField) {
+                legendField.classList.add('required');
+            }
+            let invalidFeedback = el.closest('.form-group').parentNode.querySelector('.invalid-feedback');
+            if(invalidFeedback) {
+                invalidFeedback.remove();
+            }
+        } else if (el.labels.length) {
+            // default
+            el.labels[0].classList.remove('required');
             let invalidFeedback = el.parentNode.querySelector('.invalid-feedback');
             if(invalidFeedback) {
                 invalidFeedback.remove();
             }
-            el.previousElementSibling.classList.remove('required');
-            // custom control type
-        } else if (el.nextElementSibling.matches('label')) {
-            el.closest('.form-group').querySelector('.col-form-legend').classList.add('required');
-            el.closest('.form-group').parentNode.querySelector('.invalid-feedback').remove();
         }
     },
 };
