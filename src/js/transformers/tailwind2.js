@@ -1,5 +1,6 @@
 export const tailwind2Validation = {
     addValidationMessage: (form, field, messages) => {
+        form.classList.add('ajax-form-submitted');
         field.closest('.formbuilder-row').classList.add('form-invalid');
         messages.forEach((message) => {
             let el = document.createElement('div');
@@ -43,7 +44,9 @@ export const tailwind2ConditionalLogic = {
     },
     addRequiredState: (el) => {
         el.setAttribute('required', 'required');
-        el.closest('.formbuilder-row').classList.add('form-invalid');
+        if(el.closest('.ajax-form') && el.closest('.ajax-form').classList.contains('ajax-form-submitted')) {
+            el.closest('.formbuilder-row').classList.add('form-invalid');
+        }
         if (el.closest('.form-group') && el.closest('.form-group').querySelector('.col-form-legend')) {
             // form-group field
             el.closest('.form-group').querySelector('.col-form-legend').classList.add('required');

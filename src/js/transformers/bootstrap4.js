@@ -1,5 +1,6 @@
 export const bootstrap4Validation = {
     addValidationMessage: (form, field, messages) => {
+        form.classList.add('ajax-form-submitted');
         if (field.querySelectorAll('.custom-control').length) {
             field.querySelectorAll('.custom-control .custom-control-input').forEach((el) => el.classList.add('is-invalid'));
         } else {
@@ -46,7 +47,9 @@ export const bootstrap4ConditionalLogic = {
     },
     addRequiredState: (el) => {
         el.setAttribute('required', 'required');
-        el.classList.add('is-invalid');
+        if(el.closest('.ajax-form') && el.closest('.ajax-form').classList.contains('ajax-form-submitted')) {
+            el.classList.add('is-invalid');
+        }
         if (el.closest('.form-group') && el.closest('.form-group').querySelector('.col-form-legend')) {
             // form-group field
             el.closest('.form-group').querySelector('.col-form-legend').classList.add('required');
