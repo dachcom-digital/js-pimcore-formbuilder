@@ -90,12 +90,12 @@ export default class FetchManager {
                 let field = form.querySelector('[id="' + fieldId + '"]');
 
                 //fallback for radio / checkbox
-                if (!field instanceof Element) {
+                if (!(field instanceof Element)) {
                     field = form.querySelector('[id^="' + fieldId + '"]');
                 }
 
                 //fallback for custom fields (like ajax file, headline or snippet type)
-                if (!field instanceof Element) {
+                if (!(field instanceof Element)) {
                     field = form.querySelector('[data-field-id*="' + fieldId + '"]');
                 }
 
