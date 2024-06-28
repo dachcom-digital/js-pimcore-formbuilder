@@ -1,10 +1,6 @@
-# reCAPTCHA V3 Component
+# Friendly Captcha Component
 
 This component will enable Friendly Captcha functionality on your form.
-
-Workflow: 
-- Loads `https://www.google.com/recaptcha/api.js` if not available
-- Adds token to captcha field on your form
 
 ## Back-End Configuration
 First, you need to set up some server side configuration via form builder. Read more about it [here](https://github.com/dachcom-digital/pimcore-formbuilder/blob/master/docs/03_SpamProtection.md#friendly-captcha). 
