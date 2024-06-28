@@ -13,11 +13,16 @@ npm i js-pimcore-formbuilder
 - [Conditional Logic Component](./docs/02_conditionalLogic.md)
 - [Repeater Component](./docs/03_repeater.md)
 - [Tracker Component](./docs/04_tracker.md)
-- [reCAPTCHA V3 Component](./docs/05_recaptchaV3.md)
+- Spam Protection
+    - [reCAPTCHA V3 Component](./docs/05_1_recaptchaV3.md)
+    - [Friendly Captcha Component](./docs/05_2_friendlyCaptcha.md)
 - [Dynamic Multi File Libraries](./docs/06_dynamic_multi_file.md)
     - [Drop Zone](./10_dmf_drop_zone.md)
 
 ## Upgrade Notes
+
+### 1.2.0
+- **[NEW FEATURE]**: Add FriendlyCaptcha Component
 
 ### 1.1.1
 - **[BUGFIX]**: Fix validation message for ajax [#22](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/22)

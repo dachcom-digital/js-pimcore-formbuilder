@@ -38,6 +38,13 @@ export const RECAPTCHA_V3_DEFAULTS = {
     reCaptchaFieldClass: 'input.re-captcha-v3',
 };
 
+export const FRIENDLY_CAPTCHA_DEFAULTS = {
+    useAutoWidget: true,
+    autoWidgetVersionToLoad: null,
+    setupField: null,
+    friendlyCaptchaFieldClass: 'div.form-builder-friendly-captcha',
+};
+
 export const TRACKER_DEFAULTS = {
     onBeforeSubmitDataToProvider: null, // data, formName, form
     provider: 'google',

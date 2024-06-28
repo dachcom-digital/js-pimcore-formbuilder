@@ -5,6 +5,7 @@ import FetchManager from './core/fetchManager';
 // components
 import Tracker from './components/tracker';
 import RecaptchaV3 from './components/recaptchaV3';
+import FriendlyCaptcha from './components/friendlyCaptcha';
 import Repeater from './components/repeater';
 import ConditionalLogic from './components/conditionalLogic';
 
@@ -16,6 +17,7 @@ export {
     FetchManager,
     Tracker,
     RecaptchaV3,
+    FriendlyCaptcha,
     Repeater,
     ConditionalLogic,
     DropzoneHandler,
