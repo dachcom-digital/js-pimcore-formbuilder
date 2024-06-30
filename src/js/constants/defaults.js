@@ -44,6 +44,11 @@ export const FRIENDLY_CAPTCHA_DEFAULTS = {
     setupField: null,
     friendlyCaptchaFieldClass: 'div.form-builder-friendly-captcha',
 };
+export const CLOUDFLARE_TURNSTILE_DEFAULTS = {
+    useAutoWidget: true,
+    setupField: null,
+    cloudflareTurnstileFieldClass: 'div.form-builder-cloudflare-turnstile',
+};
 
 export const TRACKER_DEFAULTS = {
     onBeforeSubmitDataToProvider: null, // data, formName, form

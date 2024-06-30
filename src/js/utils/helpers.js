@@ -19,11 +19,11 @@ export function isObject(o) {
     return type === 'object' && (o != null && !isFunction(o) && !isArray(o));
 }
 
-export function getScript(url) {
+export function getScript(url, async) {
     return new Promise((resolve, reject) => {
         const s = document.createElement('script');
         s.src = url;
-        s.async = true;
+        s.async = async !== false;
         s.onerror = reject;
         s.onload = s.onreadystatechange = function () {
             const loadState = this.readyState;

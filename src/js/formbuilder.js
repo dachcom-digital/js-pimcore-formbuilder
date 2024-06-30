@@ -6,6 +6,7 @@ import FetchManager from './core/fetchManager';
 import Tracker from './components/tracker';
 import RecaptchaV3 from './components/recaptchaV3';
 import FriendlyCaptcha from './components/friendlyCaptcha';
+import CloudflareTurnstile from './components/cloudflareTurnstile';
 import Repeater from './components/repeater';
 import ConditionalLogic from './components/conditionalLogic';
 
@@ -18,6 +19,7 @@ export {
     Tracker,
     RecaptchaV3,
     FriendlyCaptcha,
+    CloudflareTurnstile,
     Repeater,
     ConditionalLogic,
     DropzoneHandler,
