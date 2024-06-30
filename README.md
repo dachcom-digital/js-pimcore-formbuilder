@@ -16,6 +16,7 @@ npm i js-pimcore-formbuilder
 - Spam Protection
     - [reCAPTCHA V3 Component](./docs/05_1_recaptchaV3.md)
     - [Friendly Captcha Component](./docs/05_2_friendlyCaptcha.md)
+    - [Cloudflare Turnstile Component](./docs/05_3_cloudflareTurnstile.md)
 - [Dynamic Multi File Libraries](./docs/06_dynamic_multi_file.md)
     - [Drop Zone](./10_dmf_drop_zone.md)
 
@@ -23,6 +24,7 @@ npm i js-pimcore-formbuilder
 
 ### 1.2.0
 - **[NEW FEATURE]**: Add FriendlyCaptcha Component
+- **[NEW FEATURE]**: Add Cloudflare Turnstile Component
 
 ### 1.1.1
 - **[BUGFIX]**: Fix validation message for ajax [#22](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/22)

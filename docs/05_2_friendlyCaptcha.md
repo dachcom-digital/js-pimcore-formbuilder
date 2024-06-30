@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.formbuilder.ajax-form').forEach((form) => {
         new FriendlyCaptcha(form, {
             useAutoWidget: false, // disable it to use your own implementation (see next option "setupField")
-            setupField: function (element, options) {
+            setupField: function (element, form, options) {
 
                 const friendlyCaptionOptions = {
                     doneCallback: function (solution) {
