@@ -18,7 +18,7 @@ npm i js-pimcore-formbuilder
     - [Friendly Captcha Component](./docs/05_2_friendlyCaptcha.md)
     - [Cloudflare Turnstile Component](./docs/05_3_cloudflareTurnstile.md)
 - [Dynamic Multi File Libraries](./docs/06_dynamic_multi_file.md)
-    - [Drop Zone](./10_dmf_drop_zone.md)
+    - [Drop Zone](./docs/10_dmf_drop_zone.md)
 
 ## Upgrade Notes
 
