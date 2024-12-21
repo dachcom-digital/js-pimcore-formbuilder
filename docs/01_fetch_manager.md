@@ -29,6 +29,7 @@ Depending on the form template, predefined Element Transformers are used automat
 
 - Tailwind 2
 - Bootstrap 4
+- Bootstrap 5
 - Bootstrap 3
 
 ### Custom Element Transformers

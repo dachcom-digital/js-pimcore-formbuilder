@@ -1,6 +1,7 @@
 import {TYPE_VALIDATION, TYPE_CONDITIONAL_LOGIC} from '../constants/elementTransformer';
 import {bootstrap3Validation, bootstrap3ConditionalLogic} from '../transformers/bootstrap3';
 import {bootstrap4Validation, bootstrap4ConditionalLogic} from '../transformers/bootstrap4';
+import {bootstrap5Validation, bootstrap5ConditionalLogic} from '../transformers/bootstrap5';
 import {tailwind2Validation, tailwind2ConditionalLogic} from '../transformers/tailwind2';
 
 import {isFunction} from '../utils/helpers';
@@ -17,6 +18,7 @@ export default class ElementTransformer {
                 this.themeTransform = {
                     'bootstrap3': bootstrap3Validation,
                     'bootstrap4': bootstrap4Validation,
+                    'bootstrap5': bootstrap5Validation,
                     'tailwind2': tailwind2Validation,
                 };
                 break;
@@ -24,6 +26,7 @@ export default class ElementTransformer {
                 this.themeTransform = {
                     'bootstrap3': bootstrap3ConditionalLogic,
                     'bootstrap4': bootstrap4ConditionalLogic,
+                    'bootstrap5': bootstrap5ConditionalLogic,
                     'tailwind2': tailwind2ConditionalLogic,
                 };
                 break;
@@ -47,6 +50,9 @@ export default class ElementTransformer {
             case 'bootstrap_4_layout':
             case 'bootstrap_4_horizontal_layout':
                 return this.themeTransform.bootstrap4[action].apply(null, args);
+            case 'bootstrap_5_layout':
+            case 'bootstrap_5_horizontal_layout':
+                return this.themeTransform.bootstrap5[action].apply(null, args);
             case 'tailwind_2_layout':
                 return this.themeTransform.tailwind2[action].apply(null, args);
             default:
