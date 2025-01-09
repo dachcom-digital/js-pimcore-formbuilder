@@ -22,6 +22,9 @@ npm i js-pimcore-formbuilder
 
 ## Upgrade Notes
 
+### 1.3.0
+- **[NEW FEATURE]**: Bootstrap 5 layout support
+
 ### 1.2.0
 - **[NEW FEATURE]**: Add FriendlyCaptcha Component
 - **[NEW FEATURE]**: Add Cloudflare Turnstile Component
@@ -68,3 +71,12 @@ npm i js-pimcore-formbuilder
 
 ### 1.0.0
 - New Theme Transformer available: Tailwind 2
+
+***
+
+## License
+**DACHCOM.DIGITAL AG**, Löwenhofstrasse 15, 9424 Rheineck, Schweiz  
+[dachcom.com](https://www.dachcom.com), dcdi@dachcom.ch  
+Copyright © 2025 DACHCOM.DIGITAL. All rights reserved.  
+
+For licensing details please visit [LICENSE.md](LICENSE.md)  
