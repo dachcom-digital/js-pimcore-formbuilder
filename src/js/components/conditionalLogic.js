@@ -321,5 +321,4 @@ export default class ConditionalLogic {
             'constraintsRemove': constraintsRemove,
         };
     }
-
 }
