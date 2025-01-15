@@ -62,6 +62,17 @@ export default class DropzoneHandler {
         element.classList.add('dropzone');
 
         new Dropzone(element, dropzoneConfiguration)
+            .on('addedfile', (file) => {
+                const elType = file.previewElement.querySelector('[data-dz-type]');
+
+                if (!elType || !file.type || !file.type.includes('/')) return;
+
+                const splittedType = file.type.split('/');
+
+                if (splittedType.length > 1) {
+                    elType.textContent = splittedType[1];
+                }
+            })
             .on('removedfile', (file) => {
 
                 if (this.suspendFileRemoval) {
