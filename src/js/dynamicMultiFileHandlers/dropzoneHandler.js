@@ -65,7 +65,9 @@ export default class DropzoneHandler {
             .on('addedfile', (file) => {
                 const elType = file.previewElement.querySelector('[data-dz-type]');
 
-                if (!elType || !file.type || !file.type.includes('/')) return;
+                if (!elType || !file.type || !file.type.includes('/')) {
+                    return;
+                }
 
                 const splittedType = file.type.split('/');
 
@@ -74,7 +76,6 @@ export default class DropzoneHandler {
                 }
             })
             .on('removedfile', (file) => {
-
                 if (this.suspendFileRemoval) {
                     return;
                 }
@@ -92,22 +93,26 @@ export default class DropzoneHandler {
                             id: data.uuid,
                         });
                     });
-            }).on('sending', (file, xhr, formData) => {
-            submitButton.setAttribute('disabled', 'disabled');
-            formData.append('uuid', file.upload.uuid);
-        }).on('complete', () => {
-            submitButton.removeAttribute('disabled');
-        }).on('success', (file, response) => {
-            this.addToStorageField(storageField, {
-                id: response.uuid,
-                fileName: response.fileName,
+            })
+            .on('sending', (file, xhr, formData) => {
+                submitButton.setAttribute('disabled', 'disabled');
+                formData.append('uuid', file.upload.uuid);
+            })
+            .on('complete', () => {
+                submitButton.removeAttribute('disabled');
+            })
+            .on('success', (file, response) => {
+                this.addToStorageField(storageField, {
+                    id: response.uuid,
+                    fileName: response.fileName,
+                });
+            })
+            .on('cancel', () => {
+                submitButton.removeAttribute('disabled');
+            })
+            .on('reset', () => {
+                this.suspendFileRemoval = false;
             });
-        }).on('cancel', () => {
-            submitButton.removeAttribute('disabled');
-        }).on('reset', () => {
-            this.suspendFileRemoval = false;
-        });
-
     }
 
     addToStorageField(storage, newData) {
