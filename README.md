@@ -22,6 +22,9 @@ npm i js-pimcore-formbuilder
 
 ## Upgrade Notes
 
+### 1.3.1
+- **[ENHANCEMENT]**: Adds filetype to dropzone preview-element [#30](https://github.com/dachcom-digital/js-pimcore-formbuilder/pull/30)
+
 ### 1.3.0
 - **[NEW FEATURE]**: Bootstrap 5 layout support
 
