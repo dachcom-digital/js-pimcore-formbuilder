@@ -276,7 +276,7 @@ export default class ConditionalLogic {
         let constraintsAdd = new ActionApplier({
             enable: (action, ev, els) => {
                 els.forEach((el) => {
-                    if (isArray(action.validation) && action.validation.includes('not_blank')) {
+                    if (isArray(action.validation) && (action.validation.includes('not_blank') || action.validation.includes('dynamic_multi_file_not_blank'))) {
                         this.elementTransformer.transform('addRequiredState', el);
                     }
                 });
@@ -285,7 +285,7 @@ export default class ConditionalLogic {
                 els.forEach((el) => {
                     if (el.dataset.fbClHasInitialRequiredConstraint === '1') {
                         this.elementTransformer.transform('addRequiredState', el);
-                    } else if (isArray(action.validation) && action.validation.includes('not_blank')) {
+                    } else if (isArray(action.validation) && (action.validation.includes('not_blank') || action.validation.includes('dynamic_multi_file_not_blank'))) {
                         this.elementTransformer.transform('removeRequiredState', el);
                     }
                 });
@@ -297,7 +297,7 @@ export default class ConditionalLogic {
                 els.forEach((el) => {
                     if (action.removeAllValidations) {
                         this.elementTransformer.transform('removeRequiredState', el);
-                    } else if (isArray(action.validation) && action.validation.includes('not_blank')) {
+                    } else if (isArray(action.validation) && (action.validation.includes('not_blank') || action.validation.includes('dynamic_multi_file_not_blank'))) {
                         this.elementTransformer.transform('removeRequiredState', el);
                     }
                 });
