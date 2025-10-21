@@ -21,6 +21,11 @@ npm i js-pimcore-formbuilder
     - [Drop Zone](./docs/10_dmf_drop_zone.md)
 
 ## Upgrade Notes
+
+### 1.3.3
+- **[SECURITY]**: Extend dropzone to include fieldReference in requests (Formbuilder 5.3.4 Support)
+- **[BUGFIX]**: Add missing `uploadStatus` in delete request handling
+
 ### 1.3.2
 - **[BUGFIX]**: Update conditionalLogic.js to cater for file uploader constraints [#31](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/32)
 
