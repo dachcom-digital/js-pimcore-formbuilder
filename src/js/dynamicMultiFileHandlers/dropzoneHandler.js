@@ -29,6 +29,7 @@ export default class DropzoneHandler {
             template = el.querySelector('.dropzone-template'),
             element = el.querySelector('.dropzone-container'),
             fieldId = el.dataset.fieldId,
+            fieldReference = el.dataset.fieldReference ?? '',
             storageFieldId = fieldId + '_data',
             storageField = this.form.querySelector(`input[type="hidden"][id="${storageFieldId}"]`),
             config = JSON.parse(el.dataset.engineOptions),
@@ -82,7 +83,17 @@ export default class DropzoneHandler {
 
                 let url = `${this.getEndpoint('file_delete')}/${file.upload.uuid}`;
 
-                fetch(url, {method: 'DELETE'})
+                fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            uploadStatus: file.status,
+                            fieldReference: fieldReference
+                        })
+                    }
+                )
                     .then(response => response.json())
                     .then((data) => {
                         if (data.success === false) {
@@ -97,6 +108,7 @@ export default class DropzoneHandler {
             .on('sending', (file, xhr, formData) => {
                 submitButton.setAttribute('disabled', 'disabled');
                 formData.append('uuid', file.upload.uuid);
+                formData.append('fieldReference', fieldReference);
             })
             .on('complete', () => {
                 submitButton.removeAttribute('disabled');
