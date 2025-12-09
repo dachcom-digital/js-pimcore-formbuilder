@@ -21,11 +21,17 @@ export const bootstrap5Validation = {
 };
 
 export const bootstrap5ConditionalLogic = {
-    show: (el) => {
-        el.closest('.form-group, .mb-3').classList.remove('d-none');
+    show: (el, className) => {
+        el.closest('.formbuilder-row').classList.remove(className);
     },
-    hide: (el) => {
-        el.closest('.form-group, .mb-3').classList.add('d-none');
+    hide: (el, className) => {
+        el.closest('.formbuilder-row').classList.add(className);
+    },
+    addClass: (el, className) => {
+        el.closest('.formbuilder-row')?.classList.add(className);
+    },
+    removeClass: (el, className) => {
+        el.closest('.formbuilder-row')?.classList.remove(className);
     },
     enable: (el) => {
         el.removeAttribute('disabled');
@@ -40,6 +46,6 @@ export const bootstrap5ConditionalLogic = {
     removeRequiredState: (el) => {
         el.removeAttribute('required');
         el.classList.remove('is-invalid');
-        el.closest('.form-group, .mb-3')?.querySelector('.invalid-feedback')?.remove();
+        el.closest('.form-group')?.querySelector('.invalid-feedback')?.remove();
     },
 };
