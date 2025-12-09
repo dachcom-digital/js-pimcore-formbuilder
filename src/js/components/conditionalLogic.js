@@ -95,6 +95,10 @@ export default class ConditionalLogic {
                 return;
             }
 
+            if (!block.action) {
+                return;
+            }
+
             let actions = block.action,
                 dependingStructure = actions.map((action) => ({
                     action: action,
@@ -107,39 +111,105 @@ export default class ConditionalLogic {
     }
 
     initDependencies(dependency) {
-        let action = dependency.action;
 
-        dependency.condition.forEach((condition) => {
-            let conditionType = condition.type;
+        const allConditionFields = new Set();
 
-            condition.fields.forEach((fieldName) => {
-                let fields = this.form.querySelectorAll('[name*="' + fieldName + '"]');
+        dependency.condition.forEach(c => {
+            c.fields.forEach(f => allConditionFields.add(f));
+        });
 
-                fields.forEach((field) => {
-                    field.addEventListener('change', (ev) => {
-                        let doAction = Array.from(fields)
-                                .filter((field) => !field.matches('[type="checkbox"],[type="radio"]') || field.checked)
-                                .some((field) => this.conditions[conditionType].onCheck(condition, field))
-                            && condition.fields.every((fieldName) => {
-                                // check all other fields in same condition
-                                let fields = this.form.querySelectorAll('[name*="' + fieldName + '"]');
-                                return Array.from(fields)
-                                    .filter((field) => !field.matches('[type="checkbox"],[type="radio"]') || field.checked)
-                                    .some((field) => this.conditions[conditionType].onCheck(condition, field));
+        const action = dependency.action;
+        const uniqueListenerId = `fb_cl_listener_${action.type}_${action.fields.join('-')}`.replace(/[^a-zA-Z0-9]/g, '');
+
+        allConditionFields.forEach(fieldName => {
+
+            const fields = this.form.querySelectorAll('[name*="[' + fieldName + ']"]');
+
+            fields.forEach(field => {
+
+                if (field.dataset[uniqueListenerId]) {
+                    return;
+                }
+
+                field.dataset[uniqueListenerId] = 'true';
+
+                field.addEventListener('change', (ev) => {
+
+                    const doAction = this.evaluateBlockCondition({condition: dependency.condition});
+
+                    if (!action.fields) {
+                        return;
+                    }
+
+                    action.fields.forEach((targetFieldName) => {
+
+                        const targetElements = this.form.querySelectorAll('[name*="[' + targetFieldName + ']"],[data-field-name*="[' + targetFieldName + ']"]');
+
+                        if (doAction) {
+                            this.actions[action.type].onEnable(action, ev, targetElements);
+
+                            return;
+                        }
+
+                        const anotherRuleEnables = this.logic.some(block => {
+
+                            if (!block) {
+                                return false;
+                            }
+
+                            if (!block.action) {
+                                return false;
+                            }
+
+                            const isCurrentRule = block.condition === dependency.condition && block.action.includes(action);
+
+                            if (isCurrentRule) {
+                                return false;
+                            }
+
+                            if (!this.evaluateBlockCondition(block)) {
+                                return false;
+                            }
+
+                            return block.action.some(otherAction => {
+                                return otherAction.type === action.type && otherAction.fields.includes(targetFieldName);
                             });
+                        });
 
-                        if (action.fields) {
-                            action.fields.forEach((fieldName) => {
-                                let field = this.form.querySelectorAll('[name*="' + fieldName + '"],[data-field-name*="' + fieldName + '"]');
-                                if (doAction) {
-                                    this.actions[action.type].onEnable(action, ev, field);
-                                } else {
-                                    this.actions[action.type].onDisable(action, ev, field);
-                                }
-                            });
+                        if (!anotherRuleEnables) {
+                            this.actions[action.type].onDisable(action, ev, targetElements);
                         }
                     });
                 });
+            });
+        });
+    }
+
+    evaluateBlockCondition(block) {
+
+        if (!block || !block.condition) {
+            return false;
+        }
+
+        return block.condition.every((condition) => {
+
+            const conditionType = condition.type;
+
+            if (!this.conditions[conditionType]) {
+                return false;
+            }
+
+            return condition.fields.every((fieldName) => {
+
+                let fields = this.form.querySelectorAll('[name*="[' + fieldName + ']"]');
+
+                if (fields.length === 0) {
+                    return false;
+                }
+
+                return Array.from(fields)
+                    .filter((field) => !field.matches('[type="checkbox"],[type="radio"]') || field.checked)
+                    .some((field) => this.conditions[conditionType].onCheck(condition, field));
             });
         });
     }
