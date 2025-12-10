@@ -22,6 +22,9 @@ npm i js-pimcore-formbuilder
 
 ## Upgrade Notes
 
+### 1.4.0
+- **[BUGFIX]**: Refine repeater block rendering and event handling [#34](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/34)
+
 ### 1.3.3
 - **[SECURITY]**: Extend dropzone to include fieldReference in requests (Formbuilder 5.3.4 Support)
 - **[BUGFIX]**: Add missing `uploadStatus` in delete request handling

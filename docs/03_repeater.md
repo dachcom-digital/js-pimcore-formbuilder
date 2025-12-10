@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## Extended Usage
 ```js
-
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.formbuilder.ajax-form').forEach((form) => {
         
@@ -30,13 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 cb(); // always trigger the callback action!
             },
             onAdd: (container, newForm, cb) => {
+
+                let parser = new DOMParser(),
+                    newBlock = parser.parseFromString(newForm, 'text/html').body.firstChild;
+
                 container.appendChild(newBlock);
-                cb(newForm); // always trigger the callback action!
+                cb(newBlock); // always trigger the callback action!
             },
-            renderCreateBlockElement: (classes, text) => {
+            renderCreateBlockElement: (block, classes, text) => {
+                
                 let element = document.createElement('button');
+                
                 element.className = classes;
                 element.textContent = text;
+
                 return element;
             },
             allocateCreateBlockElement: (container, element) => {
@@ -46,12 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 let element = document.createElement('button');
                 element.className = classes;
                 element.textContent = text;
+
                 return element;
             },
             allocateRemoveBlockElement: (block, element) => {
                 block.appendChild(element);
-            }
-            
+            },
         });
     });
 });
