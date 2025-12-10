@@ -23,7 +23,8 @@ npm i js-pimcore-formbuilder
 ## Upgrade Notes
 
 ### 1.4.0
-- **[BUGFIX]**: Refactor `bootstrap5ConditionalLogic` to improve class manipulation and simplify element handling
+- **[BUGFIX]**: Refine repeater block rendering and event handling [#34](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/34)
+- **[BUGFIX]**: Refactor `bootstrap5ConditionalLogic` to improve class manipulation and simplify element handling [#37](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/37)
 
 ### 1.3.3
 - **[SECURITY]**: Extend dropzone to include fieldReference in requests (Formbuilder 5.3.4 Support)

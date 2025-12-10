@@ -33,9 +33,10 @@ export default class Repeater {
         if (isFunction(this.options.allocateCreateBlockElement)) {
             this.options.allocateCreateBlockElement(container, element);
         } else {
-            element.addEventListener('click', (ev) => this.onAdd(ev, container));
             container.appendChild(element);
         }
+
+        element.addEventListener('click', (ev) => this.onAdd(ev, container));
     }
 
     renderCreateBlockElement(container) {
@@ -69,9 +70,10 @@ export default class Repeater {
         if (isFunction(this.options.allocateRemoveBlockElement)) {
             this.options.allocateRemoveBlockElement(block, element);
         } else {
-            element.addEventListener('click', (ev) => this.onRemove(ev, container));
             block.appendChild(element);
         }
+
+        element.addEventListener('click', (ev) => this.onRemove(ev, container));
     }
 
     renderRemoveBlockElement(container, block) {
@@ -140,7 +142,7 @@ export default class Repeater {
         this.form.dispatchEvent(new CustomEvent(EVENTS.layoutPreRemove, {detail: {layout: containerBlock}}));
 
         if (isFunction(this.options.onRemove)) {
-            this.options.onRemove(container, cb);
+            this.options.onRemove(containerBlock, cb);
         } else {
             containerBlock.remove();
             cb();
