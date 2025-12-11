@@ -46,6 +46,6 @@ export const bootstrap5ConditionalLogic = {
     removeRequiredState: (el) => {
         el.removeAttribute('required');
         el.classList.remove('is-invalid');
-        el.closest('.form-group')?.querySelector('.invalid-feedback')?.remove();
+        el.closest('.formbuilder-row')?.querySelector('.invalid-feedback')?.remove();
     },
 };
