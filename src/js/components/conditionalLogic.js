@@ -143,7 +143,7 @@ export default class ConditionalLogic {
 
                     action.fields.forEach((targetFieldName) => {
 
-                        const targetElements = this.form.querySelectorAll('[name*="[' + targetFieldName + ']"],[data-field-name*="[' + targetFieldName + ']"]');
+                        const targetElements = this.form.querySelectorAll('[name*="[' + targetFieldName + ']"],[data-field-name="' + targetFieldName + '"]');
 
                         if (doAction) {
                             this.actions[action.type].onEnable(action, ev, targetElements);
