@@ -119,7 +119,7 @@ export default class ConditionalLogic {
         });
 
         const action = dependency.action;
-        const uniqueListenerId = `fb_cl_listener_${action.type}_${action.fields.join('-')}`.replace(/[^a-zA-Z0-9]/g, '');
+        const uniqueListenerId = `fb_cl_listener_${action.type}_${(action.fields || []).join('-')}`.replace(/[^a-zA-Z0-9]/g, '');
 
         allConditionFields.forEach(fieldName => {
 
