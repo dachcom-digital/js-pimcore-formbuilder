@@ -38,6 +38,9 @@ npm i js-pimcore-formbuilder
 
 ## Upgrade Notes
 
+### 1.4.1
+- **[BUGFIX]**: Handle undefined action.fields in listener ID [#45](https://github.com/dachcom-digital/js-pimcore-formbuilder/pull/45)
+
 ### 1.4.0
 - **[BUGFIX]**: Refine repeater block rendering and event handling [#34](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/34)
 - **[BUGFIX]**: Refactor `bootstrap5ConditionalLogic` to improve class manipulation and simplify element handling [#37](https://github.com/dachcom-digital/js-pimcore-formbuilder/issues/37)
@@ -108,6 +111,6 @@ npm i js-pimcore-formbuilder
 ## License
 **DACHCOM.DIGITAL AG**, Löwenhofstrasse 15, 9424 Rheineck, Schweiz  
 [dachcom.com](https://www.dachcom.com), dcdi@dachcom.ch  
-Copyright © 2025 DACHCOM.DIGITAL. All rights reserved.  
+Copyright © 2026 DACHCOM.DIGITAL. All rights reserved.  
 
 For licensing details please visit [LICENSE.md](LICENSE.md)  
